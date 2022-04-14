@@ -23,3 +23,14 @@ resource "aws_s3_bucket" "steven" {
      enabled = true
    }
 }
+
+resource "aws_s3_bucket" "steven_log_bucket" {
+  bucket = "steven-log-bucket"
+}
+
+resource "aws_s3_bucket_logging" "steven" {
+  bucket = aws_s3_bucket.steven.id
+
+  target_bucket = aws_s3_bucket.steven_log_bucket.id
+  target_prefix = "log/"
+}
