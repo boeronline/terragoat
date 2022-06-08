@@ -1,12 +1,12 @@
 
 resource "aws_s3_bucket" "steven" {
-   server_side_encryption_configuration {
-     rule {
-       apply_server_side_encryption_by_default {
-         sse_algorithm = "aws:kms"
-       }
-     }
-   }
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "aws:kms"
+      }
+    }
+  }
   # bucket is not encrypted
   # bucket does not have access logs
   # bucket does not have versioning
@@ -17,9 +17,11 @@ resource "aws_s3_bucket" "steven" {
     Name        = "${local.resource_prefix.value}-steven"
     Environment = local.resource_prefix.value
     }, {
+    }, {
+    owner = "smelotte"
   })
 
-   versioning {
-     enabled = true
-   }
+  versioning {
+    enabled = true
+  }
 }
